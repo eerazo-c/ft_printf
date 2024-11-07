@@ -6,18 +6,23 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:19:42 by elerazo-          #+#    #+#             */
-/*   Updated: 2024/10/31 16:00:23 by elerazo-         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:34:57 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifdef FT_PRINTF_H
+#ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
 //<BIBLIOTECAS>
-#include <stdarg.h>
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdio.h>
 
 //prototipo de funciones
-int ft_printf(char const *, ...);
+int	main(void);
+int	ft_printf(char const *str, ...);
 int	ft_specific(char c, va_list arg, int count_c);
 int	ft_putchar(char c);
+int	ft_putstr(char	*str);
+int	ft_putnbr(long nbr);
 
 #endif

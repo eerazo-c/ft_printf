@@ -1,22 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_specific.c                                      :+:      :+:    :+:   */
+/*   ft_xptr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 15:47:20 by elerazo-          #+#    #+#             */
-/*   Updated: 2024/10/31 15:50:18 by elerazo-         ###   ########.fr       */
+/*   Created: 2024/11/07 16:39:33 by elerazo-          #+#    #+#             */
+/*   Updated: 2024/11/07 16:53:30 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
+#include "ft_pritf.h"
 
-int	ft_putchar(char c)
+int	ft_pointer(void *som)
 {
-	write (1, &c, 1);
-}
-
-int	ft_putstr(char *str)
-{
-	write (1, &str, 1);
+	
 }

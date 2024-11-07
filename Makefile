@@ -1,6 +1,6 @@
 NAME = libftprintf.a 
 
-SOURCES = ft_printf.c
+SOURCES = ft_printf.c ft_put.c prueba.c
 
 HEADER = ft_printf.h
 
