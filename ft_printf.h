@@ -6,11 +6,13 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:19:42 by elerazo-          #+#    #+#             */
-/*   Updated: 2024/11/07 16:34:57 by elerazo-         ###   ########.fr       */
+/*   Updated: 2024/11/13 18:16:06 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
+# define ERROR -1
 
 //<BIBLIOTECAS>
 # include <stdarg.h>
@@ -23,6 +25,7 @@ int	ft_printf(char const *str, ...);
 int	ft_specific(char c, va_list arg, int count_c);
 int	ft_putchar(char c);
 int	ft_putstr(char	*str);
-int	ft_putnbr(long nbr);
+int	ft_putnbr(long num, long base, char *str);
+int	ft_pointer(unsigned int som);
 
 #endif

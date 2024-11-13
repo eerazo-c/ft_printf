@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:17:28 by elerazo-          #+#    #+#             */
-/*   Updated: 2024/11/07 16:30:57 by elerazo-         ###   ########.fr       */
+/*   Updated: 2024/11/13 18:22:46 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -20,13 +20,15 @@ int	ft_specific(char c, va_list arg, int countc)
 	if (c == 's')
 		countc += ft_putstr(va_arg(arg, char *));
 	if (c == 'i' || c == 'd')
-		countc += ft_putnbr(va_arg(arg, int));
+		countc += ft_putnbr(va_arg(arg, long), 10, "0123456789");
 	if (c == 'u')
-		countc += ft_putnbr(va_arg(arg, unsigned int));
-	/*if (c = 'x' || c == 'X')
-		countc += ft_hexadecimal(va_arg(arg, int));
+		countc += ft_putnbr(va_arg(arg, long), 10, "0123456789");
+	if (c == 'x')
+		countc += ft_putnbr(va_arg(arg, long), 16, "0123456789abcdef");
+	if (c == 'X')
+		countc += ft_putnbr(va_arg(arg, long), 16, "0123456789ABCDEF");
 	if (c == 'p')
-		countc += ft_pointer(va_arg(arg, void *));*/
+		countc += ft_pointer(va_arg(arg, unsigned int));
 	if (c == '-')
 		return (-1);
 	return (countc);

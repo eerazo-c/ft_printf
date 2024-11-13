@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:57:05 by elerazo-          #+#    #+#             */
-/*   Updated: 2024/11/07 16:31:29 by elerazo-         ###   ########.fr       */
+/*   Updated: 2024/11/13 18:18:55 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -29,24 +29,24 @@ int	ft_putstr(char *str)
 	return (i);
 }
 
-int	ft_check(long num)
+int	ft_check(long num, long base, char *str)
 {
 	int	check;
-	int	men;
+	int	men;	
 
 	check = 0;
 	men = 0;
-	if (num < 10)
-		return (ft_putchar(num + '0'));
+	if (num < base)
+		return (ft_putchar(str[num]));
 	else
-		check = ft_check(num / 10);
-	if (check == -1)
-		return (-1);
-	men = ft_putchar((num % 10) + '0');
+		check = ft_check(num / base, base, str);
+	if (check == ERROR)
+		return (ERROR);
+	men = ft_putchar(str[num % base]);
 	return (check + men);
 }
 
-int	ft_putnbr(long num)
+int	ft_putnbr(long num, long base, char *str)
 {
 	int	n;
 	int	check;
@@ -57,10 +57,24 @@ int	ft_putnbr(long num)
 		n = ft_putchar('-');
 		num *= -1;
 	}
-	if (n == -1)
-		return (-1);
-	check = ft_check(num);
-	if (check == -1)
-		return (-1);
+	if (n == ERROR)
+		return (ERROR);
+	check = ft_check(num, base, str);
+	if (check == ERROR)
+		return (ERROR);
 	return (n + check);
+}
+
+int	ft_pointer(unsigned int som)
+{
+	int conte;
+	int	hexa;
+
+	conte = write (1, "0x", 2);
+	if (conte == ERROR)
+		return (ERROR);
+	hexa = ft_putnbr((long)som, 16, "0123456789abcdef");
+	if (hexa == ERROR)
+		return (ERROR);
+	return (conte + hexa);
 }
