@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:57:05 by elerazo-          #+#    #+#             */
-/*   Updated: 2024/11/13 18:18:55 by elerazo-         ###   ########.fr       */
+/*   Updated: 2024/11/15 16:33:21 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -29,7 +29,7 @@ int	ft_putstr(char *str)
 	return (i);
 }
 
-int	ft_check(long num, long base, char *str)
+int	ft_check(unsigned long long num, unsigned long long base, char *str)
 {
 	int	check;
 	int	men;	
@@ -46,7 +46,7 @@ int	ft_check(long num, long base, char *str)
 	return (check + men);
 }
 
-int	ft_putnbr(long num, long base, char *str)
+int	ft_putnbr(long long num, long base, char *str)
 {
 	int	n;
 	int	check;
@@ -65,15 +65,15 @@ int	ft_putnbr(long num, long base, char *str)
 	return (n + check);
 }
 
-int	ft_pointer(unsigned int som)
+int	ft_pointer(unsigned long long som)
 {
-	int conte;
+	int	conte;
 	int	hexa;
 
 	conte = write (1, "0x", 2);
 	if (conte == ERROR)
 		return (ERROR);
-	hexa = ft_putnbr((long)som, 16, "0123456789abcdef");
+	hexa = ft_putnbr((long long)som, 16, "0123456789abcdef");
 	if (hexa == ERROR)
 		return (ERROR);
 	return (conte + hexa);

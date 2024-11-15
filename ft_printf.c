@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:17:28 by elerazo-          #+#    #+#             */
-/*   Updated: 2024/11/13 18:22:46 by elerazo-         ###   ########.fr       */
+/*   Updated: 2024/11/15 15:48:15 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -28,7 +28,7 @@ int	ft_specific(char c, va_list arg, int countc)
 	if (c == 'X')
 		countc += ft_putnbr(va_arg(arg, long), 16, "0123456789ABCDEF");
 	if (c == 'p')
-		countc += ft_pointer(va_arg(arg, unsigned int));
+		countc += ft_pointer(va_arg(arg, unsigned long long));
 	if (c == '-')
 		return (-1);
 	return (countc);

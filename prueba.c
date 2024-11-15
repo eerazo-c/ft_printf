@@ -17,8 +17,9 @@ int main (void)
 }*/
 int main ()
 {
+	int	num = 7;
 	char str[15] = "Hola que tal";
 
-	ft_printf("mio:%p\n", str);
-	printf("ori:%p\n", str);
+	ft_printf("mio:%p\nmio_num:%p\n", &str, &num);
+	printf("ori:%p\nori_num:%p\n", &str, &num);
 }
