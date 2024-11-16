@@ -1,49 +1,75 @@
-NAME = libftprintf.a 
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/15 16:47:26 by elerazo-          #+#    #+#              #
+#    Updated: 2024/11/15 17:02:48 by elerazo-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SOURCES = ft_printf.c ft_put.c prueba.c
+NAME		=	libftprintf.a
+AR			=	ar
+ARFLAGS		=	-rcs
+CC			=	cc
+CFLAGS		=	-Wall -Wextra -Werror
+OBJDIR		=	build
+SRCS		=	ft_printf.c ft_put.c
+OBJS		=	$(addprefix $(OBJDIR)/, ${SRCS:.c=.o})
 
-HEADER = ft_printf.h
+PURPLE		=	\033[0;35m
+BLUE		=	\033[0;34m
+GREEN		=	\033[0;32m
+RED			=	\033[0;31m
+RESET		=	\033[m
 
-OBJECTS = $(SOURCES:.c=.o)
+define compile
+printf "%b" "$(BLUE)$(2) $(PURPLE)$(@F)$(RESET)\r"; \
+OUTPUT=$$($(1) 2>&1); \
+RESULT=$$?; \
+printf "%b" "$(BLUE)$(2) $(RESET)"; \
+if [ $$RESULT -ne 0 ]; then \
+  printf "%-42b%b" "$(PURPLE)$(@)" "$(RED)✘$(RESET)\n$(OUTPUT)"; \
+else  \
+  printf "%-42b%b" "$(PURPLE)$(@F)" "$(GREEN)✓$(RESET)\n"; \
+fi; \
+exit $$RESULT
+endef
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-AR = ar -rcs
+all: banner $(NAME)
 
-######## COLORS COMPILATED ########
-GREEN       = \033[1;92m
-PURPLE 		= \033[1;95m
-RED         = \033[1;91m
-NC          = \033[0m
-
-all: header $(NAME)
-
-$(NAME): $(OBJECTS)
-	$(AR) $(NAME) $(OBJECTS)
-	@echo "$(PURPLE)\n✨ COMPILED ✨\n$(NC)"
-
-%.o: %.c $(HEADER) Makefile
-	@printf "$(PURPLE)Generating IRC objects... %-33.33s \r$(NC)"$@
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-
-clean:
-	 @ rm -f $(OBJECTS) 
-
-fclean: clean
-	  @ rm -f $(NAME)
-
-re: fclean all
-
-header: 
-	@echo "# ************************************************************************ #"
-	@echo "#      ███╗   ███╗ █████╗░██╗░░██╗███████╗███████╗██╗██╗░░░░░███████╗      #"
-	@echo "#      ████╗ ████║██╔══██╗██║░██╔╝██╔════╝██╔════╝██║██║░░░░░██╔════╝      #"
-	@echo "#      ██╔████╔██║███████║█████═╝░█████╗░░█████╗░░██║██║░░░░░█████╗░░      #"
-	@echo "#      ██║╚██╔╝██║██╔══██║██╔═██╗░██╔══╝░░██╔══╝░░██║██║░░░░░██╔══╝░░      #"
-	@echo "#      ██║ ╚═╝ ██║██║  ██║██║░╚██╗███████╗██║░░░░░██║███████╗███████╗      #"
-	@echo "#      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝░░╚═╝╚══════╝╚═╝░░░░░╚═╝╚══════╝╚══════╝      #"
-	@echo "# ************************************************************************ #"
-	@echo 
+banner:
+	@printf "%b" "$(PURPLE)\n"
+	@echo
+	@echo "    ____________   ____  ____  _____   ______________"
+	@echo "   / ____/_  __/  / __ \/ __ \/  _/ | / /_  __/ ____/"
+	@echo "  / /_    / /    / /_/ / /_/ // //  |/ / / / / /_    "
+	@echo " / __/   / /    / ____/ _, _// // /|  / / / / __/    "
+	@echo "/_/     /_/____/_/   /_/ |_/___/_/ |_/ /_/ /_/       "
+	@echo "         /_____/                                     "
+	@echo
+	@printf "%b" "\n$(RESET)"
 
 
-.PHONY: clean fclean re
+$(OBJS): $(OBJDIR)/%.o : %.c ft_printf.h | $(OBJDIR)
+	@$(call compile,$(CC) $(CFLAGS) -c $< -o $@,compiling...)
+
+$(OBJDIR):
+	@-mkdir $(OBJDIR)
+
+$(NAME): $(OBJS)
+	@$(call compile,$(AR) $(ARFLAGS) $@ $^,linking...)
+
+fclean: banner clean
+	@printf "%b" "$(BLUE)$(@)ing...$(RESET)\n"
+	@rm -rf $(NAME)
+
+clean: banner
+	@printf "%b" "$(BLUE)$(@)ing...$(RESET)\n"
+	@rm -rf $(OBJDIR)
+
+re:    fclean all
+
+.PHONY: all banner clean fclean re

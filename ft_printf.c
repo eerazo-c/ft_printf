@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:17:28 by elerazo-          #+#    #+#             */
-/*   Updated: 2024/11/15 15:48:15 by elerazo-         ###   ########.fr       */
+/*   Updated: 2024/11/16 17:13:59 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -15,22 +15,27 @@ int	ft_specific(char c, va_list arg, int countc)
 {
 	if (c == '%')
 		countc += ft_putchar(c);
-	if (c == 'c')
+	else if (c == 'c')
 		countc += ft_putchar(va_arg(arg, int));
-	if (c == 's')
+	else if (c == 's')
 		countc += ft_putstr(va_arg(arg, char *));
-	if (c == 'i' || c == 'd')
+	else if (c == 'i' || c == 'd')
 		countc += ft_putnbr(va_arg(arg, long), 10, "0123456789");
-	if (c == 'u')
+	else if (c == 'u')
 		countc += ft_putnbr(va_arg(arg, long), 10, "0123456789");
-	if (c == 'x')
+	else if (c == 'x')
 		countc += ft_putnbr(va_arg(arg, long), 16, "0123456789abcdef");
-	if (c == 'X')
+	else if (c == 'X')
 		countc += ft_putnbr(va_arg(arg, long), 16, "0123456789ABCDEF");
-	if (c == 'p')
+	else if (c == 'p')
 		countc += ft_pointer(va_arg(arg, unsigned long long));
-	if (c == '-')
+	else if (c == '-')
 		return (-1);
+	else
+	{
+		countc += ft_putchar('%');
+		countc += ft_putchar(c);
+	}
 	return (countc);
 }
 
@@ -45,7 +50,7 @@ int	ft_printf(char const *str, ...)
 	print = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '%')
+		if (str[i] == '%' && str[i + 1] != '\0')
 			print += ft_specific(str[++i], ap, print);
 		else
 			print += ft_putchar(str[i]);
