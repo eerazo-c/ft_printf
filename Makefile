@@ -25,19 +25,6 @@ GREEN		=	\033[0;32m
 RED			=	\033[0;31m
 RESET		=	\033[m
 
-define compile
-printf "%b" "$(BLUE)$(2) $(PURPLE)$(@F)$(RESET)\r"; \
-OUTPUT=$$($(1) 2>&1); \
-RESULT=$$?; \
-printf "%b" "$(BLUE)$(2) $(RESET)"; \
-if [ $$RESULT -ne 0 ]; then \
-  printf "%-42b%b" "$(PURPLE)$(@)" "$(RED)✘$(RESET)\n$(OUTPUT)"; \
-else  \
-  printf "%-42b%b" "$(PURPLE)$(@F)" "$(GREEN)✓$(RESET)\n"; \
-fi; \
-exit $$RESULT
-endef
-
 all: banner $(NAME)
 
 banner:
@@ -54,13 +41,15 @@ banner:
 
 
 $(OBJS): $(OBJDIR)/%.o : %.c ft_printf.h | $(OBJDIR)
-	@$(call compile,$(CC) $(CFLAGS) -c $< -o $@,compiling...)
+	@printf "%-42b" "$(BLUE)compiling... $(PURPLE)$(@F)$(RESET)\n"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR):
 	@-mkdir $(OBJDIR)
 
 $(NAME): $(OBJS)
-	@$(call compile,$(AR) $(ARFLAGS) $@ $^,linking...)
+	@printf "%-42b" "$(BLUE)linking... $(PURPLE)$(@F)$(RESET)\n"
+	@$(AR) $(ARFLAGS) $@ $^
 
 fclean: banner clean
 	@printf "%b" "$(BLUE)$(@)ing...$(RESET)\n"

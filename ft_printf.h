@@ -20,7 +20,7 @@
 # include <stdio.h>
 
 //prototipo de funciones
-int	main(void);
+int	main(int ac, char **av);
 int	ft_printf(char const *str, ...);
 int	ft_specific(char c, va_list arg, int count_c);
 int	ft_putchar(char c);

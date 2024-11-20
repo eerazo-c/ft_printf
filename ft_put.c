@@ -21,6 +21,8 @@ int	ft_putstr(char *str)
 	int	i;
 
 	i = 0;
+	if (str == NULL)
+		return (write(1, "(nil)", 6)); 
 	while (str[i])
 	{
 		ft_putchar(str[i]);
