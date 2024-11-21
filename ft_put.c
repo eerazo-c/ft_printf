@@ -6,12 +6,12 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:57:05 by elerazo-          #+#    #+#             */
-/*   Updated: 2024/11/21 15:37:32 by elerazo-         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:15:27 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
+int	ft_putchar(int c)
 {
 	return (write(1, &c, 1));
 }
@@ -22,11 +22,13 @@ int	ft_putstr(char *str)
 
 	i = 0;
 	if (str == NULL)
-		return (write(1, "(null)", 6));
-	while (str[i])
 	{
-		if (ft_putchar(str[i]) == -1)
-			return (-1);
+		return (write(1, "(null)", 6));
+	}
+	while (str[i] != '\0')
+	{
+		if (ft_putchar(str[i]) == ERROR)
+			return (ERROR);
 		i++;
 	}
 	return (i);
@@ -59,7 +61,6 @@ int	ft_putnbr(long long num, long long base, char *str)
 	{
 		n = ft_putchar('-');
 		num *= -1;
-		printf("aqui:%lld\n", num);
 	}
 	if (n == ERROR)
 		return (ERROR);
@@ -80,7 +81,7 @@ int	ft_pointer(unsigned long long som)
 	conte = write (1, "0x", 2);
 	if (conte == ERROR)
 		return (ERROR);
-	hexa = ft_putnbr((long long)som, 16, "0123456789abcdef");
+	hexa = ft_putnbr((long)som, 16, "0123456789abcdef");
 	if (hexa == ERROR)
 		return (ERROR);
 	return (conte + hexa);

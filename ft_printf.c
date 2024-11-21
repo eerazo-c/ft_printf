@@ -6,13 +6,16 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:17:28 by elerazo-          #+#    #+#             */
-/*   Updated: 2024/11/21 17:31:28 by elerazo-         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:18:07 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	ft_specific(char c, va_list arg, int countc)
+int	ft_specific(char c, va_list arg)
 {
+	int countc;
+
+	countc = 0;
 	if (c == '%')
 		countc += ft_putchar(c);
 	else if (c == 'c')
@@ -20,7 +23,7 @@ int	ft_specific(char c, va_list arg, int countc)
 	else if (c == 's')
 		countc += ft_putstr(va_arg(arg, char *));
 	else if (c == 'i' || c == 'd')
-		countc += ft_putnbr(va_arg(arg, long), 10, "0123456789");
+		countc += ft_putnbr(va_arg(arg, int), 10, "0123456789");
 	else if (c == 'u')
 		countc += ft_putnbr(va_arg(arg, long), 10, "0123456789");
 	else if (c == 'x')
@@ -51,11 +54,9 @@ int	ft_printf(char const *str, ...)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%' && str[i + 1] != '\0')
-			print += ft_specific(str[++i], ap, print);
+			print += ft_specific(str[++i], ap);
 		else
 			print += ft_putchar(str[i]);
-		if (print == '-')
-			return (-1);
 		i++;
 	}
 	va_end(ap);

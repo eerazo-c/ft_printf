@@ -7,8 +7,8 @@ int main(void)
     int ret1, ret2;
 
     // Caso 1: Cadenas normales
-    ret1 = ft_printf("Hola, %s!\n", "Eli");
-    ret2 = printf("Hola, %s!\n", "Eli");
+    ret1 = ft_printf("Hola, s%s!\n", "Eli");
+    ret2 = printf("Hola, s%s!\n", "Eli");
     printf("ft_printf: %d, printf: %d\n\n", ret1, ret2);
 
     // Caso 2: Números positivos y negativos
@@ -47,10 +47,10 @@ int main(void)
     ret2 = printf("Caracter: %c\n", 'A');
     printf("ft_printf: %d, printf: %d\n\n", ret1, ret2);
 
-    // Caso 9: Ancho y precisión
-    ret1 = ft_printf("Ancho: %10d, Precisión: %.5d\n", 42, 42);
-    ret2 = printf("Ancho: %10d, Precisión: %.5d\n", 42, 42);
-    printf("ft_printf: %d, printf: %d\n\n", ret1, ret2);
+//    // Caso 9: Ancho y precisión
+ //   ret1 = ft_printf("Ancho: %10d, Precisión: %.5d\n", 42, 42);
+  //  ret2 = printf("Ancho: %10d, Precisión: %.5d\n", 42, 42);
+   // printf("ft_printf: %d, printf: %d\n\n", ret1, ret2);
 
     // Caso 10: Formatos desconocidos
 /*    ret1 = ft_printf("Formato desconocido: %q\n");

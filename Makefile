@@ -6,7 +6,7 @@
 #    By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/15 16:47:26 by elerazo-          #+#    #+#              #
-#    Updated: 2024/11/21 15:25:03 by elerazo-         ###   ########.fr        #
+#    Updated: 2024/11/21 16:50:29 by elerazo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ ARFLAGS		=	-rcs
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 OBJDIR		=	build
-SRCS		=	ft_printf.c ft_put.c
+SRCS		=	ft_printf.c ft_put.c main.c
 OBJS		=	$(addprefix $(OBJDIR)/, ${SRCS:.c=.o})
 
 PURPLE		=	\033[0;35m
