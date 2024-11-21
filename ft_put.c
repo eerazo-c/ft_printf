@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:57:05 by elerazo-          #+#    #+#             */
-/*   Updated: 2024/11/15 16:33:21 by elerazo-         ###   ########.fr       */
+/*   Updated: 2024/11/21 15:37:32 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -22,16 +22,17 @@ int	ft_putstr(char *str)
 
 	i = 0;
 	if (str == NULL)
-		return (write(1, "(nil)", 6)); 
+		return (write(1, "(null)", 6));
 	while (str[i])
 	{
-		ft_putchar(str[i]);
+		if (ft_putchar(str[i]) == -1)
+			return (-1);
 		i++;
 	}
 	return (i);
 }
 
-int	ft_check(unsigned long long num, unsigned long long base, char *str)
+int	ft_check(long long num, long long base, char *str)
 {
 	int	check;
 	int	men;	
@@ -48,7 +49,7 @@ int	ft_check(unsigned long long num, unsigned long long base, char *str)
 	return (check + men);
 }
 
-int	ft_putnbr(long long num, long base, char *str)
+int	ft_putnbr(long long num, long long base, char *str)
 {
 	int	n;
 	int	check;
@@ -58,6 +59,7 @@ int	ft_putnbr(long long num, long base, char *str)
 	{
 		n = ft_putchar('-');
 		num *= -1;
+		printf("aqui:%lld\n", num);
 	}
 	if (n == ERROR)
 		return (ERROR);
@@ -72,6 +74,9 @@ int	ft_pointer(unsigned long long som)
 	int	conte;
 	int	hexa;
 
+	conte = 0;
+	if (conte == '\0')
+		return (write(1, "(nil)", 5));
 	conte = write (1, "0x", 2);
 	if (conte == ERROR)
 		return (ERROR);
