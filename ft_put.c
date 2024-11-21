@@ -75,13 +75,12 @@ int	ft_pointer(unsigned long long som)
 	int	conte;
 	int	hexa;
 
-	conte = 0;
-	if (conte == '\0')
+	if (som == '\0')
 		return (write(1, "(nil)", 5));
 	conte = write (1, "0x", 2);
 	if (conte == ERROR)
 		return (ERROR);
-	hexa = ft_putnbr((long)som, 16, "0123456789abcdef");
+	hexa = ft_putnbr((long long)som, 16, "0123456789abcdef");
 	if (hexa == ERROR)
 		return (ERROR);
 	return (conte + hexa);

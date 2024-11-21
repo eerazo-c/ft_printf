@@ -47,15 +47,34 @@ int main(void)
     ret2 = printf("Caracter: %c\n", 'A');
     printf("ft_printf: %d, printf: %d\n\n", ret1, ret2);
 
-//    // Caso 9: Ancho y precisión
+/*    // Caso 9: Ancho y precisión
  //   ret1 = ft_printf("Ancho: %10d, Precisión: %.5d\n", 42, 42);
   //  ret2 = printf("Ancho: %10d, Precisión: %.5d\n", 42, 42);
    // printf("ft_printf: %d, printf: %d\n\n", ret1, ret2);
 
     // Caso 10: Formatos desconocidos
-/*    ret1 = ft_printf("Formato desconocido: %q\n");
+    ret1 = ft_printf("Formato desconocido: %q\n");
     ret2 = printf("Formato desconocido: %q\n");
     printf("ft_printf: %d, printf: %d\n\n", ret1, ret2);
 */
     return 0;
 }
+/*
+#include <stdio.h>
+
+int main(void)
+{
+    void *ptr = NULL;
+    int ret1, ret2;
+
+    ret1 = printf("Puntero NULL: %p\n", ptr);
+    ret2 = ft_printf("Puntero NULL: %p\n", ptr);
+    printf("printf: %d, ft_printf: %d\n", ret1, ret2);
+
+    ptr = (void *)0x1234abcd;
+    ret1 = printf("Puntero válido: %p\n", ptr);
+    ret2 = ft_printf("Puntero válido: %p\n", ptr);
+    printf("printf: %d, ft_printf: %d\n", ret1, ret2);
+
+    return 0;
+}*/

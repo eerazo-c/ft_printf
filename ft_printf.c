@@ -13,7 +13,7 @@
 
 int	ft_specific(char c, va_list arg)
 {
-	int countc;
+	int	countc;
 
 	countc = 0;
 	if (c == '%')
