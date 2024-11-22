@@ -7,8 +7,8 @@ int main(void)
     int ret1, ret2;
 
     // Caso 1: Cadenas normales
-    ret1 = ft_printf("Hola, s%s!\n", "Eli");
-    ret2 = printf("Hola, s%s!\n", "Eli");
+    ret1 = ft_printf("Hola, %s!\n", "Eli");
+    ret2 = printf("Hola, %s!\n", "Eli");
     printf("ft_printf: %d, printf: %d\n\n", ret1, ret2);
 
     // Caso 2: Números positivos y negativos

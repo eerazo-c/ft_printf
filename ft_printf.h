@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <limits.h>
- 
+
 //prototipo de funciones
 //int main (void);
 int	ft_printf(char const *str, ...);

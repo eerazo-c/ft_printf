@@ -35,10 +35,7 @@ int	ft_specific(char c, va_list arg)
 	else if (c == '-')
 		return (-1);
 	else
-	{
 		countc += ft_putchar('%');
-		countc += ft_putchar(c);
-	}
 	return (countc);
 }
 

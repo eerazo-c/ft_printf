@@ -16,7 +16,7 @@ ARFLAGS		=	-rcs
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 OBJDIR		=	build
-SRCS		=	ft_printf.c ft_put.c main.c
+SRCS		=	ft_printf.c ft_put.c 
 OBJS		=	$(addprefix $(OBJDIR)/, ${SRCS:.c=.o})
 
 PURPLE		=	\033[0;35m
