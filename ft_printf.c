@@ -6,10 +6,20 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:17:28 by elerazo-          #+#    #+#             */
-/*   Updated: 2024/11/21 19:18:07 by elerazo-         ###   ########.fr       */
+/*   Updated: 2024/11/26 19:55:14 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
+
+int	ft_strlen(char	*str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
 
 int	ft_specific(char c, va_list arg)
 {
@@ -25,11 +35,11 @@ int	ft_specific(char c, va_list arg)
 	else if (c == 'i' || c == 'd')
 		countc += ft_putnbr(va_arg(arg, int), 10, "0123456789");
 	else if (c == 'u')
-		countc += ft_putnbr(va_arg(arg, long), 10, "0123456789");
+		countc += ft_putnbr(va_arg(arg, unsigned int), 10, "0123456789");
 	else if (c == 'x')
-		countc += ft_putnbr(va_arg(arg, long), 16, "0123456789abcdef");
+		countc += ft_putnbr(va_arg(arg, unsigned int), 16, "0123456789abcdef");
 	else if (c == 'X')
-		countc += ft_putnbr(va_arg(arg, long), 16, "0123456789ABCDEF");
+		countc += ft_putnbr(va_arg(arg, unsigned int), 16, "0123456789ABCDEF");
 	else if (c == 'p')
 		countc += ft_pointer(va_arg(arg, unsigned long long));
 	else if (c == '-')
@@ -85,5 +95,8 @@ int main ()
 	printf("hexa-> %x\n", hexa);
 	printf("heXa-> %X\n", hexa);
 	printf("vacio-> %p\n", NULL);
+
+	ft_printf("mio:%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+	printf("ori:%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
 	return (0);
 }*/

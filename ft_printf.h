@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:19:42 by elerazo-          #+#    #+#             */
-/*   Updated: 2024/11/21 19:21:46 by elerazo-         ###   ########.fr       */
+/*   Updated: 2024/11/26 19:34:46 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_PRINTF_H
@@ -28,5 +28,6 @@ int	ft_putchar(int c);
 int	ft_putstr(char	*str);
 int	ft_putnbr(long long num, long long base, char *str);
 int	ft_pointer(unsigned long long som);
+int	ft_strlen(char *str);
 
 #endif
